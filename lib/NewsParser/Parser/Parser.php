@@ -7,13 +7,15 @@ use Sprain\NewsParser\Cache\Cache;
 class Parser
 {
     protected $cache;
+    protected $platform;
+    protected $platformClass;
 
     public function getMostReadArticles($limit = null)
     {
         $cacheId = get_called_class().':'.__METHOD__;
 
         if (!$articles = $this->getCache()->fetch($cacheId)) {
-            $articles = $this->doGetMostReadArticles($limit);
+            $articles = $this->getPlatform()->doGetMostReadArticles($limit);
             $this->getCache()->save($cacheId, $articles);
         }
 
@@ -24,9 +26,9 @@ class Parser
     {
         $cacheId = get_called_class().':'.__METHOD__;
 
-        if (!$articles = $this->fetchFromCache($cacheId)) {
-            $articles = $this->doGetRecommendedArticles($limit);
-            $this->saveToCache($cacheId, $articles);
+        if (!$articles = $this->getCache()->fetch($cacheId)) {
+            $articles = $this->getPlatform()->doGetRecommendedArticles($limit);
+            $this->getCache()->save($cacheId, $articles);
         }
 
         return $articles;
@@ -36,12 +38,27 @@ class Parser
     {
         $cacheId = get_called_class().':'.__METHOD__;
 
-        if (!$articles = $this->fetchFromCache($cacheId)) {
-            $articles = $this->doGetMostCommentedArticles($limit);
-            $this->saveToCache($cacheId, $articles);
+        if (!$articles = $this->getCache()->fetch($cacheId)) {
+            $articles = $this->getPlatform()->doGetMostCommentedArticles($limit);
+            $this->getCache()->save($cacheId, $articles);
         }
 
         return $articles;
+    }
+
+    public function setPlatform($platformKey)
+    {
+        $platformNameParts = explode('-', $platformKey);
+        $this->platformClass = __NAMESPACE__ . '\\Platforms\\'. strtoupper($platformNameParts[0]) . '\\'. ucfirst($platformNameParts[1]) . 'Parser';
+    }
+
+    public function getPlatform()
+    {
+        if (null === $this->platform) {
+            $this->platform = new $this->platformClass();
+        }
+
+        return $this->platform;
     }
 
     public function getCache()

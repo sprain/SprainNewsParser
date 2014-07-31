@@ -2,40 +2,38 @@
 
 require_once('../vendor/autoload.php');
 
-# 1. Choose your parser
-$nzzParser = new \Sprain\NewsParser\Parser\Platforms\CH\NzzParser();
+# 1. Initialize the parser
+$parser = new \Sprain\NewsParser\Parser\Parser();
 
-# 2. Enable cache by defining a cache folder
-$nzzParser->getCache()->setCacheDir('./cache');
+# 2. Optional - set the cache folder
+$parser->getCache()->setCacheDir('./cache');
 
-# 3. Get data
-var_dump($nzzParser->getMostReadArticles(5));
+# 3. Define your platform. The key is country - platform name
+$parser->setPlatform('ch-nzz');
+
+# 4. Get articles
+var_dump($parser->getRecommendedArticles(5));
 
 # Options: Clear the cache
-# $nzzParser->getCache()->clear();
+# $parser->getCache()->clear();
+
+# Options: Disable cache
+# $parser->getCache()->disable();
 
 /*
  * The output will be something like this:
  *
- * array (size=5)
+ * array (size=3)
  *   0 =>
  *     array (size=2)
- *       'url' => string '/international/amerika/gerichtsklage-gegen-praesident-obama-1.18354759' (length=70)
- *       'text' => string 'Klage gegen Präsident Obama' (length=28)
+ *       'url' => string 'http://www.nzz.ch/schweiz/schweizerdeutsch-ist-nicht-minderwertig-1.18352630' (length=76)
+ *       'title' => string 'Â«Schweizerdeutsch ist nicht minderwertigÂ»' (length=43)
  *   1 =>
  *     array (size=2)
- *       'url' => string '/mehr/luftfahrt/ungewisse-zukunft-der-boeing-747-1.18354052' (length=59)
- *       'text' => string 'Ungewisse Zukunft der Boeing 747' (length=32)
- *   2 =>
+ *       'url' => string 'http://www.nzz.ch/meinung/debatte/der-neue-nationalismus-1.18353294' (length=67)
+ *       'title' => string 'Der neue Nationalismus' (length=22)
+ *   2 => 
  *     array (size=2)
- *       'url' => string '/zuerich/das-andere-elektrovelo-aus-wiedikon-1.18354123' (length=55)
- *       'text' => string 'Das andere Elektrovelo aus Wiedikon' (length=35)
- *   3 =>
- *     array (size=2)
- *       'url' => string '/startseite/xxx-1.18354853' (length=26)
- *       'text' => string '«Die Welt geht weiter»' (length=24)
- *   4 =>
- *     array (size=2)
- *       'url' => string '/international/gibt-putin-politisches-asyl-1.18354735' (length=53)
- *       'text' => string 'Gibt Putin politisches Asyl?' (length=28)
+ *       'url' => string 'http://www.nzz.ch/feuilleton/islamisten-linke-und-neonazis-bilden-allianzen-1.18351849' (length=86)
+ *       'title' => string 'Islamisten, Linke und Neonazis bilden Allianzen' (length=47)
  */

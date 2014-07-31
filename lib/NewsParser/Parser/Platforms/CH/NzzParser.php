@@ -6,14 +6,14 @@ use Sprain\NewsParser\Parser\Interfaces\PlatformParserInterface;
 use Sprain\NewsParser\Parser\Parser;
 use Sunra\PhpSimple\HtmlDomParser;
 
-class NzzParser extends Parser implements PlatformParserInterface
+class NzzParser implements PlatformParserInterface
 {
     protected $rootUrl = 'http://www.nzz.ch';
 
     /**
      * @inherit
      */
-    protected  function doGetMostReadArticles($limit = null)
+    public  function doGetMostReadArticles($limit = null)
     {
         return $this->getArticles('#tab-Gelesen', $limit);
     }
@@ -21,7 +21,7 @@ class NzzParser extends Parser implements PlatformParserInterface
     /**
      * @inherit
      */
-    protected function doGetRecommendedArticles($limit = null)
+    public function doGetRecommendedArticles($limit = null)
     {
         return $this->getArticles('#tab-Empfohlen', $limit);
     }
@@ -29,7 +29,7 @@ class NzzParser extends Parser implements PlatformParserInterface
     /**
      * @inherit
      */
-    protected function doGetMostCommentedArticles($limit = null)
+    public function doGetMostCommentedArticles($limit = null)
     {
         return $this->getArticles('#tab-Kommentiert', $limit);
     }
@@ -53,7 +53,7 @@ class NzzParser extends Parser implements PlatformParserInterface
             $link = $listElement->find('a', 0);
             $articles[] = array(
                 'url' => $this->rootUrl . $link->href,
-                'text' => $link->plaintext
+                'title' => $link->plaintext
             );
 
             $i++;

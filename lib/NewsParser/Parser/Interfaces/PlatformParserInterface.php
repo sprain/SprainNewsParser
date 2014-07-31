@@ -4,9 +4,9 @@ namespace Sprain\NewsParser\Parser\Interfaces;
 
 interface PlatformParserInterface
 {
-    function getMostReadArticles($limit = null);
+    function doGetMostReadArticles($limit = null);
 
-    function getRecommendedArticles($limit = null);
+    function doGetRecommendedArticles($limit = null);
 
-    function getMostCommentedArticles($limit = null);
+    function doGetMostCommentedArticles($limit = null);
 }

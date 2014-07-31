@@ -7,14 +7,14 @@ use Sprain\NewsParser\Parser\Interfaces\PlatformParserInterface;
 use Sprain\NewsParser\Parser\Parser;
 use Sunra\PhpSimple\HtmlDomParser;
 
-class TagesanzeigerParser extends Parser implements PlatformParserInterface
+class TagesanzeigerParser implements PlatformParserInterface
 {
     protected $rootUrl = 'http://www.tagesanzeiger.ch';
 
     /**
      * @inherit
      */
-    protected function doGetMostReadArticles($limit = null)
+    public function doGetMostReadArticles($limit = null)
     {
         return $this->getArticles('#mostPopular', $limit);
     }
@@ -22,7 +22,7 @@ class TagesanzeigerParser extends Parser implements PlatformParserInterface
     /**
      * @inherit
      */
-    protected function doGetRecommendedArticles($limit = null)
+    public function doGetRecommendedArticles($limit = null)
     {
         throw new NotImplementedException(__METHOD__);
     }
@@ -30,7 +30,7 @@ class TagesanzeigerParser extends Parser implements PlatformParserInterface
     /**
      * @inherit
      */
-    protected function doGetMostCommentedArticles($limit = null)
+    public function doGetMostCommentedArticles($limit = null)
     {
         throw new NotImplementedException(__METHOD__);
     }
@@ -55,7 +55,7 @@ class TagesanzeigerParser extends Parser implements PlatformParserInterface
             $link = $tableCell->find('a', 0);
             $articles[] = array(
                 'url' => $this->rootUrl . $link->href,
-                'text' => $link->plaintext
+                'title' => $link->plaintext
             );
 
             $i++;
