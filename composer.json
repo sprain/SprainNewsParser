@@ -1,0 +1,19 @@
+{
+    "name": "sprain/newsparser",
+    "type": "library",
+    "description": "A php library to parse recommended article from nzz.ch",
+    "keywords": ["nzz"],
+    "homepage": "https://github.com/Sprain/SprainNzzParser",
+    "license": "MIT",
+    "authors": [
+        {"name": "Manuel Reinhard", "email": "manu@sprain.ch"}
+    ],
+    "require": {
+        "php": ">=5.4",
+        "doctrine/cache": "~1.3",
+        "sunra/php-simple-html-dom-parser": "v1.5.0"
+    },
+    "autoload": {
+        "psr-4": { "Sprain\\NewsParser\\": "lib/NewsParser" }
+    }
+}
