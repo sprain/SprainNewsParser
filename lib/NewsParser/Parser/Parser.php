@@ -50,6 +50,10 @@ class Parser
     {
         $platformNameParts = explode('-', $platformKey);
         $this->platformClass = __NAMESPACE__ . '\\Platforms\\'. strtoupper($platformNameParts[0]) . '\\'. ucfirst($platformNameParts[1]) . 'Parser';
+
+        $this->platform = null;
+
+        return $this;
     }
 
     public function getPlatform()
