@@ -11,7 +11,10 @@ $parser->getCache()->setCacheDir('./cache');
 # 3. Define your platform. The key is country - platform name
 $parser->setPlatform('ch-nzz');
 
-# 4. Get articles
+# 4. Display the platform's favicon
+print '<img src="'.$parser->getIconUrl().'">';
+
+# 5. Get articles
 var_dump($parser->getRecommendedArticles(5));
 
 # Options: Clear the cache

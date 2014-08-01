@@ -4,9 +4,10 @@ namespace Sprain\NewsParser\Parser\Platforms\CH;
 
 use Sprain\NewsParser\Parser\Interfaces\PlatformParserInterface;
 use Sprain\NewsParser\Parser\Parser;
+use Sprain\NewsParser\Parser\Platforms\PlatformParser;
 use Sunra\PhpSimple\HtmlDomParser;
 
-class NzzParser implements PlatformParserInterface
+class NzzParser extends PlatformParser implements PlatformParserInterface
 {
     protected $rootUrl = 'http://www.nzz.ch';
 

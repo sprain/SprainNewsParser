@@ -46,6 +46,11 @@ class Parser
         return $articles;
     }
 
+    public function getIconUrl()
+    {
+        return 'http://www.google.com/s2/favicons?domain=' . $this->getPlatform()->getRootUrl();
+    }
+
     public function setPlatform($platformKey)
     {
         $platformNameParts = explode('-', $platformKey);

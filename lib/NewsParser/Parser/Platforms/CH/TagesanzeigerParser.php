@@ -7,7 +7,7 @@ use Sprain\NewsParser\Parser\Interfaces\PlatformParserInterface;
 use Sprain\NewsParser\Parser\Parser;
 use Sunra\PhpSimple\HtmlDomParser;
 
-class TagesanzeigerParser implements PlatformParserInterface
+class TagesanzeigerParser extends PlatformParser implements PlatformParserInterface
 {
     protected $rootUrl = 'http://www.tagesanzeiger.ch';
 
