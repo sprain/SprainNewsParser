@@ -3,11 +3,11 @@
 namespace Sprain\NewsParser\Parser\Platforms\CH;
 
 use Sprain\NewsParser\Parser\Exceptions\NotImplementedException;
-use Sprain\NewsParser\Parser\Interfaces\PlatformParserInterface;
 use Sprain\NewsParser\Parser\Parser;
+use Sprain\NewsParser\Parser\Platforms\PlatformParser;
 use Sunra\PhpSimple\HtmlDomParser;
 
-class TagesanzeigerParser extends PlatformParser implements PlatformParserInterface
+class TagesanzeigerParser extends PlatformParser
 {
     protected $rootUrl = 'http://www.tagesanzeiger.ch';
 

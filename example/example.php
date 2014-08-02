@@ -3,19 +3,19 @@
 require_once('../vendor/autoload.php');
 
 # 1. Initialize the parser
-$parser = new \Sprain\NewsParser\Parser\Parser();
+$parser = new \Sprain\NewsParser\NewsParser();
 
 # 2. Optional - set the cache folder
-$parser->getCache()->setCacheDir('./cache');
+$parser->setCacheDir('./cache');
 
 # 3. Define your platform. The key is country - platform name
-$parser->setPlatform('ch-nzz');
+$nzz = $parser->getPlatform('ch-nzz');
 
 # 4. Display the platform's favicon
-print '<img src="'.$parser->getIconUrl().'">';
+print '<img src="'.$nzz->getIconUrl().'">';
 
 # 5. Get articles
-var_dump($parser->getRecommendedArticles(5));
+var_dump($nzz->getRecommendedArticles(5));
 
 # Options: Clear the cache
 # $parser->getCache()->clear();
