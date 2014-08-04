@@ -62,11 +62,21 @@ class Cache
         return $this;
     }
 
+    public function getCacheLifetime()
+    {
+        return $this->cacheLifetime;
+    }
+
     public function setCacheDir($cacheDir)
     {
         $this->cacheDir = $cacheDir;
 
         return $this;
+    }
+
+    public function getCacheDir()
+    {
+        return $this->cacheDir;
     }
 
     public function getCache()

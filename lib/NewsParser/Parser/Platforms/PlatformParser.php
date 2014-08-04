@@ -17,11 +17,13 @@ abstract class PlatformParser
 
     public function getMostReadArticles($limit = null)
     {
-        $cacheId = get_called_class().':'.__METHOD__;
+        $cacheId = md5(get_called_class().':'.__METHOD__.$limit);
 
-        if (!$articles = $this->getCache()->fetch($cacheId)) {
+        if (null !== $this->getCache() && $articles = $this->getCache()->fetch($cacheId)) {
             $articles = $this->doGetMostReadArticles($limit);
             $this->getCache()->save($cacheId, $articles);
+        } else {
+            $articles = $this->doGetMostReadArticles($limit);
         }
 
         return $articles;
@@ -29,11 +31,13 @@ abstract class PlatformParser
 
     public function getRecommendedArticles($limit = null)
     {
-        $cacheId = get_called_class().':'.__METHOD__;
+        $cacheId = md5(get_called_class().':'.__METHOD__.$limit);
 
-        if (!$articles = $this->getCache()->fetch($cacheId)) {
+        if (null !== $this->getCache() && !$articles = $this->getCache()->fetch($cacheId)) {
             $articles = $this->doGetRecommendedArticles($limit);
             $this->getCache()->save($cacheId, $articles);
+        } else {
+            $articles = $this->doGetRecommendedArticles($limit);
         }
 
         return $articles;
@@ -41,11 +45,13 @@ abstract class PlatformParser
 
     public function getMostCommentedArticles($limit = null)
     {
-        $cacheId = get_called_class().':'.__METHOD__;
+        $cacheId = md5(get_called_class().':'.__METHOD__.$limit);
 
-        if (!$articles = $this->getCache()->fetch($cacheId)) {
+        if (null !== $this->getCache() && !$articles = $this->getCache()->fetch($cacheId)) {
             $articles = $this->doGetMostCommentedArticles($limit);
             $this->getCache()->save($cacheId, $articles);
+        } else {
+            $articles = $this->doGetMostCommentedArticles($limit);
         }
 
         return $articles;

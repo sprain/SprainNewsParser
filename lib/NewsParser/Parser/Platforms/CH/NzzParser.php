@@ -2,7 +2,6 @@
 
 namespace Sprain\NewsParser\Parser\Platforms\CH;
 
-use Sprain\NewsParser\Parser\Parser;
 use Sprain\NewsParser\Parser\Platforms\PlatformParser;
 use Sunra\PhpSimple\HtmlDomParser;
 
