@@ -35,7 +35,7 @@ $ php composer.phar update sprain/newsparser
 See [example.php](example/example.php).
 
 ## Todos
-* Write unit tests
+* Improve unit tests (e.q. test caching of fetched articles)
 * Add more news platforms
 * Add functionality to get latest articles
 * Add functionality to get details of fetched articles
